@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>学员管理系统-by the5fire</title>
+    </head>
+    <body>
+        <h3><a href="/admin/">Admin</a></h3>
+        <ul>
+            {% for student in students %}
+            <li>{{ student.name }} - {{ student.get_status_display }}</li>
+            {% endfor %}
+        </ul>
+        <hr/>
+        <form action="/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit" />
+        </form>
+    </body>
+</html>
+
+<!--
+ul : 无序列表
+li：列表项
+<hr/>   水平分割线
+<form>  表单   action 这是表单的属性，指定提交数据的地址和方法
+{% csrf_token %}  这是 DTL 的语法，用于生成 CSRF 令牌，以保护表单免受跨站请求伪造 (Cross-Site Request Forgery, CSRF) 攻击。
+
+
+其中 {% csrf_token %}是Django对提交数据安全性做的校验，这意味着，如果没有这个token，提交过去的数据是无效的。这是用来防止跨站伪造请求攻击的一个手段。
+-->
