@@ -31,6 +31,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'blog',
+    'config',
+    'comment',
     'student',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+# 这个顺序要注意，django是根据前后顺序进行查找对应资源的，，前面的会覆盖后面的
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
