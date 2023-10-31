@@ -25,6 +25,9 @@ class Category(models.Model):
 
     # 每个类都定义了一个Meta类属性，它的作用是配置Model属性
 
+    def __str__(self):
+        return self.name
+
 
 class Tag(models.Model):
     STATUS_NORMAL = 1

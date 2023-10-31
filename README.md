@@ -35,6 +35,9 @@ python manage.py startapp app名称
 python .\manage.py dbshell
 ```
 
+* linux能看到
+* .tables  查看所有表
+
 
 
 启动项目
@@ -45,3 +48,8 @@ python manage.py runserver
 python manage.py runserver 192.168.124.222:8000
 ```
 
+## ORM
+
+对象关系映射
+
+把定义好的类映射到对应的数据库的表上，django的model就是ORM的一个具体体现
