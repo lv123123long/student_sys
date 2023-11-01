@@ -22,8 +22,8 @@ class PostInline(admin.TabularInline):  # StackedInline  样式不同
 @admin.register(Category, site=custom_site)   # 分类页面
 class CategoryAdmin(BaseOwnerAdmin):
     inlines = [PostInline, ]
-    list_display = ('name', 'status', 'is_nav', 'created_time', 'post_count')  # post_count 自定义字段
-    fields = ('name', 'status', 'is_nav')  # 控制页面展示的字段
+    list_display = ('name', 'status', 'is_nav', 'created_time', 'post_count')# post_count 自定义字段。展示列表，就是创建成功的后那些展示的字段
+    fields = ('name', 'status', 'is_nav')  # 控制页面展示的字段， 点击增加分类按钮里面展示的字段
 
     def post_count(self, obj):
         return obj.post_set.count()
@@ -104,12 +104,16 @@ class PostAdmin(BaseOwnerAdmin):
     # filter_horizontal = ('tag', )
     filter_vertical = ('tag', )
 
-    def operator(self, obj):
+    def operator(self, obj):  # 自定义函数的参数是固定的，就是当前行的对象，，列表页中每一行数据，就是对应数据表中的一条数据，，也就是model的一个实例
+        # 自定义函数可以返回一个html
+        # 但是需要format_html 函数处理
         return format_html(
             '<a href="{}">编辑</a>',
             reverse('cus_admin:blog_post_change', args=(obj.id,))
+            # reverse：根据名称解析出url地址
         )
     operator.short_description = '操作'
+    # 指定表头的展示文案
 
     class Media:
         css = {
